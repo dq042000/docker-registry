@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  registry:
+    container_name: docker_registry
+    image: registry:2
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+      # 基本身份驗證設定 (選用)
+      # REGISTRY_AUTH: htpasswd
+      # REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      # REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+    volumes:
+      - ./registry-data:/var/lib/registry
+      # 如需啟用身份驗證，請取消下方註解
+      # - ./auth:/auth
+    networks:
+      - registry_network
+
+networks:
+  registry_network:
+    driver: bridge

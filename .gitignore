@@ -1,0 +1,7 @@
+.history
+docker-compose.yml
+auth/*
+registry-data/*
+
+!auth/.gitkeep
+!registry-data/.gitkeep
